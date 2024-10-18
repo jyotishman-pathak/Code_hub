@@ -9,15 +9,19 @@ import {
     Card,
     CardContent,
     CardDescription,
-    CardFooter,
+    
     CardHeader,
-    CardTitle,
+    
 } from "@/components/ui/card";
-import { CanvasRevealEffect } from '../ui/canvas-reveal-effect';
-import { GoCodeSquare } from "react-icons/go";
+
+import { signIn, useSession } from "next-auth/react";
 
 const Main = () => {
-    const router = useRouter();
+    const {data:session, status} = useSession();
+     const router = useRouter();
+
+
+   
     return (
         <div>
             <BackgroundLines className='flex items-center justify-center w-full flex-col px-4'>
@@ -25,7 +29,12 @@ const Main = () => {
                 <p className='text-2xl text-gray-600'>Join a community of innovators and developers, where you can code together, share ideas, and launch projects seamlessly.</p>
                
                {/*  add user auth logic */}
-                <Button className="mt-9 relative z-10">Sign-Up</Button>
+               {!session?.user ?<Button className="mt-9 relative z-10" onClick={() => signIn()}>
+  Sign In
+</Button> :<Button className="mt-9 relative z-10" onClick={() => router.push("/dashboard")}>
+  Dashboard
+</Button>}
+               
             </BackgroundLines>
          
 

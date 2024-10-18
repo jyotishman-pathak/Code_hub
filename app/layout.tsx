@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import  Navbar from "@/components/main/Navbar";
-import { ThemeProvider } from "@/components/main/theme-provider";
+
+import SessionLayout from "@/components/layouts/SessionLayout";
+
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,15 +31,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-       <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <Navbar/>
+        <SessionLayout>
+        
             {children}
-          </ThemeProvider>
+          
+        </SessionLayout>
+           
       </body>
     </html>
   );
