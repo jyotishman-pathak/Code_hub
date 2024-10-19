@@ -18,6 +18,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     })
   ],
   callbacks: {
+   
     async signIn({ user }) {
       try {
         // Validate user object using Zod
